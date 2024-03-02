@@ -1,0 +1,23 @@
+cd ../src/.. && checkpatch.pl -f src/*.c
+/bin/sh: 1: checkpatch.pl: not found
+Makefile:16: recipe for target 'lint' failed
+make: [lint] Error 127 (ignored)
+cd ../src/.. && cpplint --recursive src/
+Done processing src/os_graph.c
+Done processing src/os_graph.h
+Done processing src/os_list.h
+Done processing src/os_threadpool.c
+Done processing src/os_threadpool.h
+src/parallel.c:33:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+src/parallel.c:33:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
+src/parallel.c:66:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+Done processing src/parallel.c
+Done processing src/serial.c
+Total errors found: 3
+Makefile:16: recipe for target 'lint' failed
+make: [lint] Error 1 (ignored)
+cd ../src/.. && shellcheck tests/*.sh
+cd ../src/.. && pylint tests/*.py
+/bin/sh: 1: pylint: not found
+Makefile:16: recipe for target 'lint' failed
+make: [lint] Error 127 (ignored)

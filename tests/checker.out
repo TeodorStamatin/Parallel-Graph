@@ -1,0 +1,31 @@
+make -C ../src clean
+make[1]: Entering directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/src'
+rm -f serial.o os_graph.o ../utils/log/log.o parallel.o os_graph.o os_threadpool.o ../utils/log/log.o
+rm -f serial parallel
+rm -f *~
+make[1]: Leaving directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/src'
+rm -f *~
+make -i SRC_PATH=../src
+make[1]: Entering directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/tests'
+make -C ../src UTILS_PATH=/home/teo/anul2/so/tema3/assignment-parallel-graph/utils
+make[2]: Entering directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/src'
+cc -Wall -Wextra -g -O0 -I/home/teo/anul2/so/tema3/assignment-parallel-graph/utils  -c -o serial.o serial.c
+cc -Wall -Wextra -g -O0 -I/home/teo/anul2/so/tema3/assignment-parallel-graph/utils  -c -o os_graph.o os_graph.c
+cc -I/home/teo/anul2/so/tema3/assignment-parallel-graph/utils -Wall -Wextra -g -O0 -c -o /home/teo/anul2/so/tema3/assignment-parallel-graph/utils/log/log.o /home/teo/anul2/so/tema3/assignment-parallel-graph/utils/log/log.c
+cc -o serial serial.o os_graph.o /home/teo/anul2/so/tema3/assignment-parallel-graph/utils/log/log.o
+cc -Wall -Wextra -g -O0 -I/home/teo/anul2/so/tema3/assignment-parallel-graph/utils  -c -o parallel.o parallel.c
+cc -Wall -Wextra -g -O0 -I/home/teo/anul2/so/tema3/assignment-parallel-graph/utils  -c -o os_threadpool.o os_threadpool.c
+os_threadpool.c: In function ‘wait_for_completion’:
+os_threadpool.c:122:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (waiting_threads == tp->num_threads - 1) {
+                         ^~
+cc -o parallel parallel.o os_graph.o os_threadpool.o /home/teo/anul2/so/tema3/assignment-parallel-graph/utils/log/log.o -lpthread
+make[2]: Leaving directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/src'
+make[1]: Leaving directory '/home/teo/anul2/so/tema3/assignment-parallel-graph/tests'
+SRC_PATH=../src python checker.py
+  File "checker.py", line 47
+    print("\nTotal:" + 61 * " " + f" {TOTAL}/100")
+                                                ^
+SyntaxError: invalid syntax
+Makefile:12: recipe for target 'check' failed
+make: *** [check] Error 1
